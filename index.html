@@ -28,9 +28,18 @@
     --z4-bg: rgba(251,146,60,0.12);
   }
 
-  html, body { height: 100%; font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); overflow: hidden; }
+  html, body {
+    min-height: 100%;
+    min-height: 100dvh;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow: hidden;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
 
-  #app { display: flex; height: 100vh; }
+  #app { display: flex; min-height: 100dvh; height: 100vh; }
 
   /* === SIDEBAR === */
   #sidebar {
@@ -39,7 +48,8 @@
     border-right: 1px solid var(--border);
     display: flex; flex-direction: column;
     z-index: 1000;
-    overflow: hidden;
+    min-height: 0;
+    overflow-y: auto;
   }
 
   #sidebar-header {
@@ -206,6 +216,7 @@
     position: absolute; top: 16px; right: 16px; z-index: 500;
     display: flex; gap: 8px;
   }
+  #sidebar-toggle { display: none; }
   .map-btn {
     background: var(--surface); border: 1px solid var(--border);
     border-radius: 8px; padding: 8px 14px; font-family: inherit;
@@ -256,10 +267,11 @@
     .map-header-left { display: flex; gap: 8px; align-items: center; }
     #sidebar-toggle { display: inline-flex; }
     .map-btn { padding: 7px 12px; font-size: 11px; }
-    #legend { left: 12px; right: auto; bottom: 12px; width: calc(100% - 24px); }
+    #legend { left: 12px; right: auto; bottom: calc(12px + env(safe-area-inset-bottom)); width: calc(100% - 24px); }
     #legend h4 { margin-bottom: 8px; }
     .legend-item { flex-wrap: wrap; gap: 6px; }
     .legend-count { margin-left: 0; padding-left: 0; }
+    #map-header { top: calc(12px + env(safe-area-inset-top)); }
     #sidebar { transition: max-height 0.25s ease, padding 0.25s ease, border-bottom 0.25s ease; }
     body.mobile-sidebar-collapsed #sidebar {
       max-height: 0;
@@ -271,7 +283,7 @@
       opacity: 0;
       pointer-events: none;
     }
-    body.mobile-sidebar-collapsed #map-wrap { height: calc(100vh - 12px); }
+    body.mobile-sidebar-collapsed #map-wrap { height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 12px); }
   }
 
   /* Leaflet overrides */
