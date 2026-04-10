@@ -59,7 +59,7 @@
   }
 
   /* Search */
-  #search-wrap { padding: 14px 16px 10px; border-bottom: 1px solid var(--border); }
+  #search-wrap { position: relative; padding: 14px 16px 10px; border-bottom: 1px solid var(--border); }
   #search {
     width: 100%;
     background: var(--surface2);
@@ -77,25 +77,60 @@
   }
   #search:focus { border-color: rgba(255,255,255,0.2); }
   #search::placeholder { color: var(--muted); }
+  #search-clear {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border: none;
+    background: rgba(255,255,255,0.08);
+    color: var(--muted);
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    transition: background 0.2s, color 0.2s;
+  }
+  #search-clear:hover { background: rgba(255,255,255,0.15); color: var(--text); }
+  #search-clear.visible { display: inline-flex; }
 
   /* Zone filters */
   #filters { padding: 10px 16px 12px; border-bottom: 1px solid var(--border); }
   #filters-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
   #zone-btns { display: flex; gap: 6px; flex-wrap: wrap; }
   .zone-btn {
+    display: inline-flex; align-items: center; gap: 8px;
     padding: 5px 12px; border-radius: 20px; border: 1px solid;
     font-family: inherit; font-size: 12px; font-weight: 500;
-    cursor: pointer; transition: all 0.15s; background: transparent;
+    cursor: pointer; transition: all 0.18s ease; background: transparent;
+  }
+  .zone-btn .zone-badge {
+    display: inline-flex; min-width: 24px; justify-content: center;
+    padding: 2px 6px; border-radius: 999px;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.02em;
+    background: rgba(255,255,255,0.05); color: var(--muted);
   }
   .zone-btn[data-zone="1"] { color: var(--z1); border-color: rgba(74,222,128,0.3); }
   .zone-btn[data-zone="2"] { color: var(--z2); border-color: rgba(96,165,250,0.3); }
   .zone-btn[data-zone="3"] { color: var(--z3); border-color: rgba(244,114,182,0.3); }
-  .zone-btn.active[data-zone="1"] { background: var(--z1-bg); border-color: var(--z1); }
-  .zone-btn.active[data-zone="2"] { background: var(--z2-bg); border-color: var(--z2); }
-  .zone-btn.active[data-zone="3"] { background: var(--z3-bg); border-color: var(--z3); }
-  .zone-btn:hover { opacity: 0.8; }
+  .zone-btn.active[data-zone="1"] { background: var(--z1-bg); border-color: var(--z1); box-shadow: 0 8px 24px rgba(74,222,128,0.12); }
+  .zone-btn.active[data-zone="2"] { background: var(--z2-bg); border-color: var(--z2); box-shadow: 0 8px 24px rgba(96,165,250,0.12); }
+  .zone-btn.active[data-zone="3"] { background: var(--z3-bg); border-color: var(--z3); box-shadow: 0 8px 24px rgba(244,114,182,0.12); }
+  .zone-btn:hover { opacity: 0.88; transform: translateY(-1px); }
   .zone-btn.all-btn { color: var(--muted); border-color: var(--border); }
-  .zone-btn.all-btn.active { color: var(--text); border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.05); }
+  .zone-btn.all-btn.active { color: var(--text); border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.08); box-shadow: 0 10px 24px rgba(255,255,255,0.08); }
+  #filter-actions { margin-top: 10px; display: flex; justify-content: flex-start; }
+  .action-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 8px 12px; border-radius: 999px; border: 1px solid var(--border);
+    font-family: inherit; font-size: 11px; color: var(--text); background: rgba(255,255,255,0.03);
+    cursor: pointer; transition: background 0.2s, transform 0.2s;
+  }
+  .action-btn:hover { background: rgba(255,255,255,0.08); transform: translateY(-1px); }
 
   /* Stats */
   #stats { padding: 12px 16px; border-bottom: 1px solid var(--border); }
@@ -227,20 +262,24 @@
         </svg>
         <h1>RMP LOCAL Zones</h1>
       </div>
-      <p>PA · NJ · DE &nbsp;·&nbsp; 638 ZIP Codes</p>
+      <p>PA · NJ · DE &nbsp;·&nbsp; <span id="header-count">599</span> ZIP Codes</p>
     </div>
 
     <div id="search-wrap">
       <input id="search" type="text" placeholder="Search by ZIP, city, or state…" autocomplete="off"/>
+      <button id="search-clear" aria-label="Clear search">×</button>
     </div>
 
     <div id="filters">
       <div class="filters-label">Filter by Zone</div>
       <div id="zone-btns">
-        <button class="zone-btn all-btn active" data-zone="all">All</button>
-        <button class="zone-btn" data-zone="1">Zone 1</button>
-        <button class="zone-btn" data-zone="2">Zone 2</button>
-        <button class="zone-btn" data-zone="3">Zone 3</button>
+        <button class="zone-btn all-btn active" data-zone="all">All <span class="zone-badge">599</span></button>
+        <button class="zone-btn" data-zone="1">Zone 1 <span class="zone-badge"></span></button>
+        <button class="zone-btn" data-zone="2">Zone 2 <span class="zone-badge"></span></button>
+        <button class="zone-btn" data-zone="3">Zone 3 <span class="zone-badge"></span></button>
+      </div>
+      <div id="filter-actions">
+        <button class="action-btn" id="clear-filters">Clear filters</button>
       </div>
     </div>
 
@@ -254,7 +293,7 @@
 
     <div id="results-header">
       <span>ZIP Codes</span>
-      <span id="results-count">599</span>
+      <span><span id="results-count">599</span> / <span id="total-count">599</span></span>
     </div>
     <div id="results-list">
       <div id="no-results">No results found</div>
@@ -299,6 +338,21 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
 const markerLayers = { '1': [], '2': [], '3': [] };
 const allMarkers = [];
 let activeFilter = 'all';
+const zoneButtons = document.querySelectorAll('.zone-btn');
+const zoneCounts = {
+  '1': ZIP_DATA.filter(d => d.zone === '1').length,
+  '2': ZIP_DATA.filter(d => d.zone === '2').length,
+  '3': ZIP_DATA.filter(d => d.zone === '3').length,
+};
+function updateZoneBadges() {
+  zoneButtons.forEach(btn => {
+    const badge = btn.querySelector('.zone-badge');
+    if (!badge) return;
+    const zone = btn.dataset.zone;
+    badge.textContent = zone === 'all' ? fmt(ZIP_DATA.length) : fmt(zoneCounts[zone] || 0);
+  });
+}
+updateZoneBadges();
 
 function makeCircle(d) {
   const color = ZONE_COLORS[d.zone];
@@ -944,10 +998,12 @@ function buildList(items) {
   if (items.length === 0) {
     noResults.style.display = 'block';
     countEl.textContent = '0';
+    document.getElementById('total-count').textContent = ZIP_DATA.length;
     return;
   }
   noResults.style.display = 'none';
   countEl.textContent = fmt(items.length);
+  document.getElementById('total-count').textContent = ZIP_DATA.length;
   const frag = document.createDocumentFragment();
   items.slice(0, 300).forEach(d => {
     const color = ZONE_COLORS[d.zone];
@@ -1027,8 +1083,21 @@ document.querySelectorAll('.zone-btn').forEach(btn => {
 });
 
 // Search
-document.getElementById('search').addEventListener('input', e => {
+const searchInput = document.getElementById('search');
+const searchClear = document.getElementById('search-clear');
+searchInput.addEventListener('input', e => {
   searchQ = e.target.value.trim();
+  applyFilters();
+  searchClear.classList.toggle('visible', !!searchQ);
+});
+const clearFiltersBtn = document.getElementById('clear-filters');
+clearFiltersBtn.addEventListener('click', () => {
+  searchInput.value = '';
+  searchQ = '';
+  searchClear.classList.remove('visible');
+  activeFilter = 'all';
+  document.querySelectorAll('.zone-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector('.zone-btn[data-zone="all"]').classList.add('active');
   applyFilters();
 });
 
@@ -1039,6 +1108,7 @@ document.getElementById('btn-reset').addEventListener('click', () => {
 
 // Init list
 buildList(ZIP_DATA);
+document.getElementById('header-count').textContent = ZIP_DATA.length;
 </script>
 </body>
 </html>
