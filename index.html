@@ -338,21 +338,6 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
 const markerLayers = { '1': [], '2': [], '3': [] };
 const allMarkers = [];
 let activeFilter = 'all';
-const zoneButtons = document.querySelectorAll('.zone-btn');
-const zoneCounts = {
-  '1': ZIP_DATA.filter(d => d.zone === '1').length,
-  '2': ZIP_DATA.filter(d => d.zone === '2').length,
-  '3': ZIP_DATA.filter(d => d.zone === '3').length,
-};
-function updateZoneBadges() {
-  zoneButtons.forEach(btn => {
-    const badge = btn.querySelector('.zone-badge');
-    if (!badge) return;
-    const zone = btn.dataset.zone;
-    badge.textContent = zone === 'all' ? fmt(ZIP_DATA.length) : fmt(zoneCounts[zone] || 0);
-  });
-}
-updateZoneBadges();
 
 function makeCircle(d) {
   const color = ZONE_COLORS[d.zone];
@@ -977,6 +962,22 @@ const ZIP_DATA = [{"zip": "08640", "zone": "2", "lat": 40.0104, "lng": -74.6148,
 {"zip": "19897", "zone": "3", "lat": 39.7459, "lng": -75.5466, "city": "Wilmington", "state": "DE"},
 {"zip": "19898", "zone": "3", "lat": 39.7459, "lng": -75.5466, "city": "Wilmington", "state": "DE"},
 {"zip": "19899", "zone": "3", "lat": 39.7459, "lng": -75.5466, "city": "Wilmington", "state": "DE"}];
+
+const zoneButtons = document.querySelectorAll('.zone-btn');
+const zoneCounts = {
+  '1': ZIP_DATA.filter(d => d.zone === '1').length,
+  '2': ZIP_DATA.filter(d => d.zone === '2').length,
+  '3': ZIP_DATA.filter(d => d.zone === '3').length,
+};
+function updateZoneBadges() {
+  zoneButtons.forEach(btn => {
+    const badge = btn.querySelector('.zone-badge');
+    if (!badge) return;
+    const zone = btn.dataset.zone;
+    badge.textContent = zone === 'all' ? fmt(ZIP_DATA.length) : fmt(zoneCounts[zone] || 0);
+  });
+}
+updateZoneBadges();
 
 ZIP_DATA.forEach(d => {
   const c = makeCircle(d);
