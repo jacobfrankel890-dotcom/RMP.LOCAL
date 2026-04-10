@@ -562,10 +562,18 @@ document.getElementById('btn-reset').addEventListener('click', () => {
 });
 
 const sidebarToggle = document.getElementById('sidebar-toggle');
+const syncSidebarToggle = () => {
+  if (window.innerWidth > 900 && document.body.classList.contains('mobile-sidebar-collapsed')) {
+    document.body.classList.remove('mobile-sidebar-collapsed');
+    sidebarToggle.textContent = 'Show list';
+  }
+};
 sidebarToggle.addEventListener('click', () => {
   const collapsed = document.body.classList.toggle('mobile-sidebar-collapsed');
   sidebarToggle.textContent = collapsed ? 'Show list' : 'Hide list';
 });
+window.addEventListener('resize', syncSidebarToggle);
+syncSidebarToggle();
 
 // Init list
 buildList(ZIP_DATA);
