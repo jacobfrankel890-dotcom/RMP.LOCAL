@@ -247,14 +247,14 @@
     <div id="stats">
       <div id="stats-grid">
         <div class="stat-card" data-zone="1"><div class="num" id="s1">353</div><div class="lbl">Zone 1 · PA</div></div>
-        <div class="stat-card" data-zone="2"><div class="num" id="s2">223</div><div class="lbl">Zone 2 · NJ</div></div>
+        <div class="stat-card" data-zone="2"><div class="num" id="s2">191</div><div class="lbl">Zone 2 · NJ</div></div>
         <div class="stat-card" data-zone="3"><div class="num" id="s3">62</div><div class="lbl">Zone 3 · DE</div></div>
       </div>
     </div>
 
     <div id="results-header">
       <span>ZIP Codes</span>
-      <span id="results-count">638</span>
+      <span id="results-count">606</span>
     </div>
     <div id="results-list">
       <div id="no-results">No results found</div>
@@ -272,7 +272,7 @@
     <div id="legend">
       <h4>Delivery Zones</h4>
       <div class="legend-item"><div class="legend-swatch" style="background:var(--z1)"></div><span class="legend-label">Zone 1 · PA</span><span class="legend-count" id="lc1">353</span></div>
-      <div class="legend-item"><div class="legend-swatch" style="background:var(--z2)"></div><span class="legend-label">Zone 2 · NJ South</span><span class="legend-count" id="lc2">223</span></div>
+      <div class="legend-item"><div class="legend-swatch" style="background:var(--z2)"></div><span class="legend-label">Zone 2 · NJ South</span><span class="legend-count" id="lc2">191</span></div>
       <div class="legend-item"><div class="legend-swatch" style="background:var(--z3)"></div><span class="legend-label">Zone 3 · DE</span><span class="legend-count" id="lc3">62</span></div>
     </div>
   </div>
@@ -324,49 +324,19 @@ function makeCircle(d) {
 
 
 
-const ZIP_DATA = [{"zip": "08562", "zone": "2", "lat": 40.0648, "lng": -74.6032, "city": "Wrightstown", "state": "NJ"},
-{"zip": "08640", "zone": "2", "lat": 40.0104, "lng": -74.6148, "city": "Joint Base Mdl", "state": "NJ"},
+const ZIP_DATA = [{"zip": "08640", "zone": "2", "lat": 40.0104, "lng": -74.6148, "city": "Joint Base Mdl", "state": "NJ"},
 {"zip": "08641", "zone": "2", "lat": 40.0294, "lng": -74.5891, "city": "Joint Base Mdl", "state": "NJ"},
 {"zip": "08007", "zone": "2", "lat": 39.864, "lng": -75.0537, "city": "Barrington", "state": "NJ"},
 {"zip": "08051", "zone": "2", "lat": 39.7868, "lng": -75.1839, "city": "Mantua", "state": "NJ"},
-{"zip": "08520", "zone": "2", "lat": 40.2491, "lng": -74.5151, "city": "Hightstown", "state": "NJ"},
-{"zip": "08525", "zone": "2", "lat": 40.4091, "lng": -74.7858, "city": "Hopewell", "state": "NJ"},
-{"zip": "08534", "zone": "2", "lat": 40.3282, "lng": -74.7956, "city": "Pennington", "state": "NJ"},
-{"zip": "08540", "zone": "2", "lat": 40.3782, "lng": -74.6622, "city": "Princeton", "state": "NJ"},
-{"zip": "08542", "zone": "2", "lat": 40.3545, "lng": -74.6587, "city": "Princeton", "state": "NJ"},
-{"zip": "08544", "zone": "2", "lat": 40.3443, "lng": -74.655, "city": "Princeton", "state": "NJ"},
-{"zip": "08550", "zone": "2", "lat": 40.2826, "lng": -74.6205, "city": "Princeton Junction", "state": "NJ"},
-{"zip": "08560", "zone": "2", "lat": 40.3123, "lng": -74.8579, "city": "Titusville", "state": "NJ"},
-{"zip": "08561", "zone": "2", "lat": 40.2503, "lng": -74.5826, "city": "Windsor", "state": "NJ"},
-{"zip": "08608", "zone": "2", "lat": 40.2188, "lng": -74.7668, "city": "Trenton", "state": "NJ"},
-{"zip": "08609", "zone": "2", "lat": 40.2261, "lng": -74.7383, "city": "Trenton", "state": "NJ"},
-{"zip": "08610", "zone": "2", "lat": 40.1846, "lng": -74.7068, "city": "Trenton", "state": "NJ"},
-{"zip": "08611", "zone": "2", "lat": 40.1899, "lng": -74.7449, "city": "Trenton", "state": "NJ"},
-{"zip": "08618", "zone": "2", "lat": 40.2544, "lng": -74.7876, "city": "Trenton", "state": "NJ"},
-{"zip": "08619", "zone": "2", "lat": 40.2397, "lng": -74.7, "city": "Trenton", "state": "NJ"},
-{"zip": "08620", "zone": "2", "lat": 40.162, "lng": -74.651, "city": "Trenton", "state": "NJ"},
-{"zip": "08628", "zone": "2", "lat": 40.2645, "lng": -74.8182, "city": "Trenton", "state": "NJ"},
-{"zip": "08629", "zone": "2", "lat": 40.2204, "lng": -74.7306, "city": "Trenton", "state": "NJ"},
-{"zip": "08638", "zone": "2", "lat": 40.2562, "lng": -74.7585, "city": "Trenton", "state": "NJ"},
-{"zip": "08648", "zone": "2", "lat": 40.2799, "lng": -74.7135, "city": "Lawrence Township", "state": "NJ"},
-{"zip": "08690", "zone": "2", "lat": 40.2336, "lng": -74.6551, "city": "Trenton", "state": "NJ"},
-{"zip": "08691", "zone": "2", "lat": 40.2146, "lng": -74.576, "city": "Robbinsville", "state": "NJ"},
 {"zip": "08512", "zone": "2", "lat": 40.3247, "lng": -74.5332, "city": "Cranbury", "state": "NJ"},
-{"zip": "08536", "zone": "2", "lat": 40.3375, "lng": -74.5876, "city": "Plainsboro", "state": "NJ"},
-{"zip": "08831", "zone": "2", "lat": 40.3312, "lng": -74.417, "city": "Monroe Township", "state": "NJ"},
 {"zip": "08501", "zone": "2", "lat": 40.1397, "lng": -74.5484, "city": "Allentown", "state": "NJ"},
 {"zip": "08510", "zone": "2", "lat": 40.1886, "lng": -74.4321, "city": "Millstone Township", "state": "NJ"},
-{"zip": "08535", "zone": "2", "lat": 40.2252, "lng": -74.4414, "city": "Millstone Township", "state": "NJ"},
-{"zip": "08555", "zone": "2", "lat": 40.2133, "lng": -74.4718, "city": "Roosevelt", "state": "NJ"},
 {"zip": "08005", "zone": "2", "lat": 39.8022, "lng": -74.2991, "city": "Barnegat", "state": "NJ"},
 {"zip": "08724", "zone": "2", "lat": 40.0981, "lng": -74.1096, "city": "Brick", "state": "NJ"},
 {"zip": "08731", "zone": "2", "lat": 39.8578, "lng": -74.2665, "city": "Forked River", "state": "NJ"},
 {"zip": "08734", "zone": "2", "lat": 39.8647, "lng": -74.1715, "city": "Lanoka Harbor", "state": "NJ"},
 {"zip": "08502", "zone": "2", "lat": 40.4416, "lng": -74.6554, "city": "Belle Mead", "state": "NJ"},
 {"zip": "08504", "zone": "2", "lat": 40.4076, "lng": -74.7032, "city": "Blawenburg", "state": "NJ"},
-{"zip": "08528", "zone": "2", "lat": 40.3871, "lng": -74.621, "city": "Kingston", "state": "NJ"},
-{"zip": "08553", "zone": "2", "lat": 40.4005, "lng": -74.6395, "city": "Rocky Hill", "state": "NJ"},
-{"zip": "08558", "zone": "2", "lat": 40.4085, "lng": -74.6947, "city": "Skillman", "state": "NJ"},
 {"zip": "18039", "zone": "1", "lat": 40.5757, "lng": -75.2236, "city": "Durham", "state": "PA"},
 {"zip": "18077", "zone": "1", "lat": 40.5659, "lng": -75.2376, "city": "Riegelsville", "state": "PA"},
 {"zip": "18081", "zone": "1", "lat": 40.5559, "lng": -75.2882, "city": "Springtown", "state": "PA"},
@@ -782,7 +752,6 @@ const ZIP_DATA = [{"zip": "08562", "zone": "2", "lat": 40.0648, "lng": -74.6032,
 {"zip": "08511", "zone": "2", "lat": 40.0235, "lng": -74.5535, "city": "Cookstown", "state": "NJ"},
 {"zip": "08515", "zone": "2", "lat": 40.1351, "lng": -74.6531, "city": "Chesterfield", "state": "NJ"},
 {"zip": "08518", "zone": "2", "lat": 40.1161, "lng": -74.8074, "city": "Florence", "state": "NJ"},
-{"zip": "08554", "zone": "2", "lat": 40.1148, "lng": -74.7804, "city": "Roebling", "state": "NJ"},
 {"zip": "08002", "zone": "2", "lat": 39.9288, "lng": -75.0243, "city": "Cherry Hill", "state": "NJ"},
 {"zip": "08003", "zone": "2", "lat": 39.89, "lng": -74.9736, "city": "Cherry Hill", "state": "NJ"},
 {"zip": "08004", "zone": "2", "lat": 39.7744, "lng": -74.8376, "city": "Atco", "state": "NJ"},
@@ -887,7 +856,6 @@ const ZIP_DATA = [{"zip": "08562", "zone": "2", "lat": 40.0648, "lng": -74.6032,
 {"zip": "08322", "zone": "2", "lat": 39.6183, "lng": -75.0377, "city": "Franklinville", "state": "NJ"},
 {"zip": "08328", "zone": "2", "lat": 39.5796, "lng": -75.0589, "city": "Malaga", "state": "NJ"},
 {"zip": "08344", "zone": "2", "lat": 39.569, "lng": -75.0193, "city": "Newfield", "state": "NJ"},
-{"zip": "08530", "zone": "2", "lat": 40.3639, "lng": -74.8961, "city": "Lambertville", "state": "NJ"},
 {"zip": "08001", "zone": "2", "lat": 39.5566, "lng": -75.3602, "city": "Alloway", "state": "NJ"},
 {"zip": "08023", "zone": "2", "lat": 39.6893, "lng": -75.486, "city": "Deepwater", "state": "NJ"},
 {"zip": "08038", "zone": "2", "lat": 39.4634, "lng": -75.4957, "city": "Hancocks Bridge", "state": "NJ"},
